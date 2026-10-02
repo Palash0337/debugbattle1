@@ -16,6 +16,7 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --font-bebas: "Bebas Neue", sans-serif;
@@ -177,6 +178,9 @@
   .absolute {
     position: absolute;
   }
+  .relative {
+    position: relative;
+  }
   .inset-0 {
     inset: 0px;
   }
@@ -268,6 +272,9 @@
       background-color: color-mix(in oklab, var(--color-pixar-dark) 35%, transparent);
     }
   }
+  .bg-white {
+    background-color: var(--color-white);
+  }
   .object-cover {
     object-fit: cover;
   }
@@ -287,6 +294,10 @@
   .font-bold {
     --tw-font-weight: var(--font-weight-bold);
     font-weight: var(--font-weight-bold);
+  }
+  .font-extrabold {
+    --tw-font-weight: var(--font-weight-extrabold);
+    font-weight: var(--font-weight-extrabold);
   }
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
@@ -495,20 +506,23 @@ img {
   background-color: #ffffff;
   transition: all 0.3s ease;
 }
-.hero {
+.hero-main {
   position: absolute;
-  top: 0;
-  height: 100vh;
   min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  overflow: hidden;
   padding-top: 80px;
+  position: relative;
+  width: 100%;
+  height: 100vh;
   z-index: 1;
+  overflow: hidden;
+  position: sticky;
+  top: 0;
 }
 .hero-gradient {
-  background: linear-gradient( 90deg, rgba(25, 0, 4, 0.96) 0%, rgba(45, 2, 8, 0.90) 20%, rgba(90, 5, 14, 0.70) 40%, rgba(150, 8, 20, 0.35) 58%, rgba(180, 10, 25, 0.10) 72%, rgba(0, 0, 0, 0) 85% );
+  background: linear-gradient( 90deg, rgba(25, 0, 4, 0.96) 0%, rgba(45, 2, 8, 0.9) 20%, rgba(90, 5, 14, 0.7) 40%, rgba(150, 8, 20, 0.35) 58%, rgba(180, 10, 25, 0.1) 72%, rgba(0, 0, 0, 0) 85% );
 }
 .hero-gradient-top {
   background: linear-gradient( 180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100% );
@@ -586,7 +600,7 @@ img {
   top: 50%;
   width: 150px;
   height: 40px;
-  background: white;
+  background: rgb(235, 233, 233);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.45s ease;
@@ -612,10 +626,16 @@ img {
   align-items: center;
   box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
 }
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 60px;
+  grid-template-columns: 47% 1fr;
+  gap: 94px;
   align-items: center;
 }
 .about-image {
@@ -624,6 +644,7 @@ img {
   background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
   border-radius: 8px;
   overflow: hidden;
+  background: linear-gradient( 135deg, #f0f0f0 0%, #e0e0e0 100% );
 }
 .about-image img {
   width: 100%;
@@ -632,18 +653,47 @@ img {
   border-radius: 8px;
 }
 .about-content h2 {
-  font-size: clamp(28px, 5vw, 60px);
+  margin-bottom: 36px;
   font-weight: 700;
-  margin-bottom: 24px;
-  color: #1a1a1a;
-  font-family: "Explorer";
+  font-size: 25px;
+  line-height: 1;
+  color: #151515;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "beabas", sans-serif;
 }
 .about-content p {
+  max-width: 520px;
+  margin: 0 0 30px 0;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 14px;
-  line-height: 1.9;
-  color: #666666;
-  margin-bottom: 30px;
-  letter-spacing: -0.15em;
+  font-weight: 400;
+  line-height: 2;
+  color: #777;
+  letter-spacing: 1.5px;
+}
+.btn-outline {
+  position: relative;
+  width: 140px;
+  background: transparent;
+  overflow: hidden;
+  transition: color 0.35s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 45px;
+  border: 2px solid #c52b3a;
+  color: #c52b3a;
+  background: linear-gradient( to right, #c52b3a 50%, transparent 50% );
+  background-size: 200% 100%;
+  background-position: right;
+  transition: background-position 0.4s ease, color 0.3s ease;
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background-position: left;
+  color: white;
 }
 .coming-soon-section {
   position: relative;
@@ -653,31 +703,45 @@ img {
 }
 .coming-soon-section .section-title {
   text-align: center;
-  margin-bottom: 60px;
+  font-size: 35px;
+  margin-bottom: 40px;
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: normal;
 }
 .carousel-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
   position: relative;
   padding: 20px 60px 40px;
 }
+.carousel-list {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1000px;
+  gap: 18px;
+}
 .carousel-item {
   position: relative;
+  height: 365px;
   border-radius: 8px;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
   flex: 1;
   height: 400px;
 }
 .carousel-item img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 .carousel-item:hover {
-  flex: 2;
+  flex: 1.8;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
 }
 .coming-soon-section .container > .btn-outline {
@@ -692,6 +756,7 @@ img {
   top: 50%;
   transform: translateY(-50%);
   display: flex;
+  flex-direction: start;
   justify-content: space-between;
   padding: 0 20px;
   pointer-events: none;
@@ -710,14 +775,22 @@ img {
   color: #1a1a1a;
   pointer-events: none;
   pointer-events: all;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 .carousel-arrow:hover {
   border-color: #c73b3b;
   color: #c73b3b;
+  transform: scale(1.05);
+}
+.coming-soon-section .container > .btn-outline {
+  display: block;
+  width: fit-content;
+  margin: 20px auto 0;
+  border-color: #c73b3b;
 }
 .careers-section {
   position: sticky;
-  top: 100%;
+  top: 0;
   height: 100vh;
   min-height: 600px;
   display: flex;
@@ -1228,6 +1301,11 @@ img {
     padding: 10px 20px;
     font-size: 11px;
   }
+}
+.about-section, .films-section, .careers-section {
+  position: relative;
+  z-index: 5;
+  background: #fff;
 }
 @property --tw-translate-x {
   syntax: "*";
